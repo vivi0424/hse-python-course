@@ -24,4 +24,3 @@ def check_positive():
 
 if __name__ == "__main__":
     check_positive()
-```

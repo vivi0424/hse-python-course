@@ -23,4 +23,3 @@ if __name__ == "__main__":
     assert min_max([7]) == (7, 7)
     assert min_max([-5, -1, -10]) == (-10, -1)
     print("task_02 (p3 advanced): тесты пройдены")
-```
