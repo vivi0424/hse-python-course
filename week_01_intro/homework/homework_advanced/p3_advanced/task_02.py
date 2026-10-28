@@ -14,9 +14,16 @@
 """
 
 def min_max(nums: list) -> tuple:
-    # TODO: реализовать
-    pass
-
+    """Найти минимум и максимум списка за один проход, O(n)."""
+    min = nums[0]
+    max = nums[0]
+    for x in nums:
+        if x < min:
+            min = x
+        if x > max:
+            max = x
+    return (min, max)
+            
 
 if __name__ == "__main__":
     assert min_max([3, 1, 4, 1, 5, 9, 2, 6]) == (1, 9)
