@@ -19,8 +19,11 @@
 #            секунды = s % 60.
 
 def seconds_to_hms(seconds: int) -> str:
-    # TODO: реализовать
-    pass
+    """Преобразует секунды в формат ЧЧ:ММ:СС."""
+    hours = seconds // 3600
+    minutes = (seconds % 3600) // 60
+    secs = seconds % 60 
+    return f"{hours:02d}:{minutes:02d}:{secs:02d}"
 
 
 # ============================================================
