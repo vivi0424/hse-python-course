@@ -33,15 +33,28 @@ def has_duplicates_slow(nums: list) -> bool:
                 return True
     return False
 
+# Анализ решения коллеги (has_duplicates_slow):
+# 1) Решение корректное: проходит все тесты.
+# 2) Лучший случай: повтор в первых двух элементах - 1 сравнение, O(1).
+#    Худший случай: повторов нет - сравниваются все пары, n*(n-1)/2 сравнений, O(n^2).
+# 3) Большие данные: list(range(100_000)) - все числа разные, это худший случай, около 5 млрд сравнений.
+# 4) Узкое место: внутренний цикл - для каждого числа заново просматривается остаток списка.
+# 5) Улучшение: запоминаем встреченные числа в set, проверка "x in set" занимает O(1).
+# 6) Сравнение: slow - O(n^2) по времени и O(1) по памяти, fast - O(n) по времени и O(n) по памяти.
 
 def has_duplicates_fast(nums: list) -> bool:
     """
-    Улучшенное решение.
-    Подсказка: используйте set для хранения уже встреченных чисел.
-    Ожидаемая сложность: O(n) по времени, O(n) по памяти.
+    Проверить, есть ли в списке повторы.
+    Идем по списку и запоминаем числа в множестве seen.
+    Если число уже встречалось, повтор найден.
+    Время O(n), память O(n).
     """
-    # TODO: реализовать
-    raise NotImplementedError
+    seen = set()
+    for n in nums:
+        if n in seen:
+            return True
+        seen.add(n)
+    return False
 
 
 # ============================================================
@@ -74,24 +87,18 @@ def has_duplicates_fast(nums: list) -> bool:
 #           pass
 
 def complexity_a() -> str:
-    # TODO
-    raise NotImplementedError
-
+    return "O(n)"
 
 def complexity_b() -> str:
-    # TODO
-    raise NotImplementedError
+    return "O(n^2)"
 
 
 def complexity_c() -> str:
-    # TODO
-    raise NotImplementedError
+    return "O(log n)" # в условии i = 0, в таком случае был бы бесконечный цикл. O(log n), если i = 1
 
 
 def complexity_d() -> str:
-    # TODO
-    raise NotImplementedError
-
+    return "O(n^2)"  # O(n) + O(n^2) = O(n^2)
 
 # ============================================================
 # Тесты

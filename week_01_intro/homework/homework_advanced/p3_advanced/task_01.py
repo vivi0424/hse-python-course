@@ -14,8 +14,18 @@
 """
 
 def has_duplicates_fast(nums: list) -> bool:
-    # TODO: реализовать
-    pass
+    """
+    Проверить, есть ли в списке повторы.
+    Идем по списку и запоминаем числа в множестве seen.
+    Если число уже встречалось, повтор найден.
+    Время O(n), память O(n).
+    """
+    seen = set()
+    for n in nums:
+        if n in seen:
+            return True
+        seen.add(n)
+    return False
 
 
 if __name__ == "__main__":
