@@ -15,8 +15,19 @@
 """
 
 def min_platforms(arrivals: list, departures: list) -> int:
-    # TODO: реализовать
-    pass
+    """Возвращает минимальное число платформ."""
+    events = []
+    for t in arrivals:
+        events.append((t, 1))
+    for t in departures:
+        events.append((t, -1))
+    current = 0
+    best = 0
+    for t, change in sorted(events):
+        current += change
+        if current > best:
+            best = current
+    return best
 
 
 if __name__ == "__main__":

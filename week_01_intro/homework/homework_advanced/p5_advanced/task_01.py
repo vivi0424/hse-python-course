@@ -15,8 +15,20 @@
 """
 
 def fractional_knapsack(capacity: float, items: list) -> float:
-    # TODO: реализовать
-    pass
+    """
+    items: список кортежей (weight, value).
+    Возвращает максимальную суммарную стоимость.
+    """
+    total = 0.0
+    items_sorted = sorted(items, key=lambda x: x[1] / x[0], reverse=True)
+    for weight, value in items_sorted:
+        if capacity >= weight:
+            total += value
+            capacity -= weight
+        else:
+            total += value * (capacity / weight)
+            break
+    return total
 
 
 if __name__ == "__main__":

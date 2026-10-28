@@ -24,9 +24,15 @@
 #            n — количество монет в ответе.
 
 def min_coins(amount: int, coins: list) -> int:
-    """Вернуть минимальное число монет или -1, если нельзя."""
-    # TODO: реализовать
-    raise NotImplementedError
+    """Возвращает минимальное число монет или -1, если нельзя."""
+    count = 0
+    for coin in sorted(coins, reverse=True):
+        count += amount // coin
+        amount = amount % coin
+    if amount != 0:
+        return -1
+    return count
+    
 
 
 # ============================================================
@@ -48,9 +54,18 @@ def min_coins(amount: int, coins: list) -> int:
 # Сложность: O(n log n).
 
 def max_intervals(intervals: list) -> int:
-    """Вернуть максимальное число непересекающихся интервалов."""
-    # TODO: реализовать
-    raise NotImplementedError
+    """Возвращает максимальное число непересекающихся интервалов."""
+    if len(intervals) == 0:
+        return 0
+    intervals_sorted = sorted(intervals, key=lambda x: x[1])
+    count = 1
+    last_end = intervals_sorted[0][1]
+    for start, end in intervals_sorted[1:]:
+        if start >= last_end:
+            count += 1
+            last_end = end
+    return count
+    
 
 
 # ============================================================
@@ -72,10 +87,18 @@ def max_intervals(intervals: list) -> int:
 def fractional_knapsack(capacity: float, items: list) -> float:
     """
     items: список кортежей (weight, value).
-    Вернуть максимальную суммарную стоимость.
+    Возвращает максимальную суммарную стоимость.
     """
-    # TODO: реализовать
-    raise NotImplementedError
+    total = 0.0
+    items_sorted = sorted(items, key=lambda x: x[1] / x[0], reverse=True)
+    for weight, value in items_sorted:
+        if capacity >= weight:
+            total += value
+            capacity -= weight
+        else:
+            total += value * (capacity / weight)
+            break
+    return total
 
 
 # ============================================================
@@ -102,9 +125,19 @@ def fractional_knapsack(capacity: float, items: list) -> float:
 # Сложность: O(n log n), память O(n).
 
 def min_platforms(arrivals: list, departures: list) -> int:
-    """Вернуть минимальное число платформ."""
-    # TODO: реализовать
-    raise NotImplementedError
+    """Возвращает минимальное число платформ."""
+    events = []
+    for t in arrivals:
+        events.append((t, 1))
+    for t in departures:
+        events.append((t, -1))
+    current = 0
+    best = 0
+    for t, change in sorted(events):
+        current += change
+        if current > best:
+            best = current
+    return best
 
 
 # ============================================================
@@ -119,7 +152,9 @@ if __name__ == "__main__":
 
     # 2
     intervals = [(1,4),(3,5),(0,6),(5,7),(3,9),(5,9),(6,10),(8,11)]
-    assert max_intervals(intervals) == 4
+    # В условии ожидается 4, но максимум 3: (1,4), (5,7), (8,11) -
+    # остальные интервалы пересекаются с ними.
+    assert max_intervals(intervals) == 3
     assert max_intervals([]) == 0
 
     # 3
