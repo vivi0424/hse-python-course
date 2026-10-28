@@ -17,8 +17,8 @@ from fractions import Fraction
 
 
 def sum_fractions(f1: str, f2: str) -> str:
-    # TODO: реализовать
-    pass
+    """Возвращает несократимую сумму дробей строкой."""
+    return str(Fraction(f1) + Fraction(f2))
 
 
 if __name__ == "__main__":

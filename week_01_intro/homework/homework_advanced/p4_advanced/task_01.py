@@ -19,8 +19,10 @@ from decimal import Decimal, ROUND_HALF_UP
 
 
 def total(price: str, qty: int, tax: str) -> str:
-    # TODO: реализовать
-    pass
+    """Возвращает итоговую стоимость строкой с 2 знаками."""
+    overall = Decimal(price) * qty * (1 + (Decimal(tax) * Decimal('0.01')))
+    result = overall.quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+    return f'Overall: {str(result)}'
 
 
 if __name__ == "__main__":
