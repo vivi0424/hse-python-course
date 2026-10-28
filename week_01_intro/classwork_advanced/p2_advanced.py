@@ -39,8 +39,11 @@ def seconds_to_hms(seconds: int) -> str:
 # Подсказка: n // 100, (n // 10) % 10, n % 10.
 
 def sum_digits(n: int) -> int:
-    # TODO: реализовать
-    pass
+    """Возвращает сумму цифр трехзначного числа."""
+    hundreds = n // 100
+    tens = (n // 10) % 10
+    units = n % 10
+    return hundreds + tens + units
 
 
 # ============================================================
@@ -61,8 +64,12 @@ def sum_digits(n: int) -> int:
 # последовательно для каждого номинала.
 
 def coin_change(amount: int) -> dict:
-    # TODO: реализовать
-    pass
+    """Возвращает минимальное количество монет для размена суммы."""
+    coins_50 = amount // 50
+    coins_10 = (amount % 50) // 10
+    coins_5 = (amount % 10) // 5
+    coins_1 = amount % 5
+    return {50: coins_50, 10: coins_10, 5: coins_5, 1: coins_1}
 
 
 # ============================================================
@@ -86,8 +93,11 @@ def coin_change(amount: int) -> dict:
 #       print("Не положительное")
 
 def check_positive():
-    # TODO: реализовать
-    pass
+    """Проверяет, является ли введенное число положительным."""
+    if (n := int(input())) > 0:
+        print(f"Положительное: {n}")
+    else:
+        print("Не положительное")
 
 
 # ============================================================
